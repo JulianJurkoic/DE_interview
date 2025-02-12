@@ -12,6 +12,13 @@ CLICKHOUSE_HOST = "clickhouse"
 CLICKHOUSE_DATABASE = "default"
 CLICKHOUSE_TABLE = "users"
 
+def basic_tranformation(data):
+    """converts all email addresses to lowercase"""
+
+def advanced_transformation(data):
+    """creates a column called full_name that concatenates first_name and last_name and drops the first_name and last_name columns"""
+
+
 def fetch_mysql_data():
     """Fetch all data from the MySQL 'users' table."""
     conn = mysql.connector.connect(
