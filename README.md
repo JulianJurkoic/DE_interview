@@ -5,22 +5,24 @@
 * The destination table will be created and data be inserted when you run the python script (after debugging and adding features)
 * Please feel free to use the internet and any LLM's, such as chatgpt.
  
-# how to start app
+# how to start all the services
 ```bash
 docker ps
 docker compose -f docker-compose.yaml up
 ```
-
-# how to connect to the mysql python container
+ 
+# how to connect to the mysql python container, and create a sql client
 ```bash
-docker exec -it interview-mysql-1 /app//
+docker exec -it interview-mysql-1 bash
+mysql -h mysql -u example_user -pexample_password
+```
+ 
+## how to connect to the python container
+```bash
 docker exec -it interview-python_service-1 bash
 ```
+
 # Run the script
 ```bash
 docker exec -it interview-python_service-1 /app/extraction_script.py
-```
-## how to connect to mysql in the terminal
-```bash
-mysql -h mysql -u example_user -pexample_password
 ```
