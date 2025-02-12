@@ -13,37 +13,44 @@ We're running this through vscode liveshare. You will be able to make changes to
 
 First we will try to fix the script, as it is broken in it's current state. This is to see how you debug
 
-Then you will be asked to create two new functions that will transform the data before putting it in clickhouse.
+Then you will be asked to create two new functions that will transform the data before putting it in clickhouse. The two functions are defined with a string explaining what each will do.
 
 
-
+# Docker commands
 NOTE: if you're running this on your own using docker (not on liveshare you will need the following commands)
+
+### you may find it useful to create a environment and activate it in vscode for syntax highlighting
+```bash
+python -m venv .venv
+.venv/Scripts/activate
+pip install ./to_py_container/requirements.txt
+```
  
-# how to start all the services
+### how to start all the services
 ```bash
 docker ps
 docker compose -f docker-compose.yaml up
 ```
  
-# how to connect to the mysql  container, and create a sql client
+### how to connect to the mysql  container, and create a sql client
 ```bash
 docker exec -it interview-mysql-1 bash
 mysql -h mysql -u example_user -pexample_password
 ```
 
-# how to connect to clickhouse container and create client:
+### how to connect to clickhouse container and create client:
 ```bash
 docker exec -it interview-clickhouse-1 bash
 clickhouse-client --host=clickhouse --user=default --password=password
 ```
  
 
-# Run the script
+### Run the script
 ```bash
 docker exec -it interview-python_service-1 /app/extraction_script.py
 ```
 
-## how to connect to the python container (shouldn't need to do this)
+### how to connect to the python container (shouldn't need to do this)
 ```bash
 docker exec -it interview-python_service-1 bash
 ```
