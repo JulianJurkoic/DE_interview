@@ -8,6 +8,7 @@
 * The destination table will be created and data be inserted when you run the python script (after debugging and adding features)
 ---
 * Please feel free to use the internet and any LLM's, such as chatgpt.
+* Note: this is more about seeing your thought process and how you work than getting the right answer quickly. Talk through your thought process, tell us your plan before you do anything.
 
 ## Interview
 We're running this through vscode liveshare. You will be able to make changes to files, but will need to tell us to run the script when you've made changes.
