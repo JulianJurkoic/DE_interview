@@ -1,8 +1,9 @@
 version: '3.8'
-
+ 
 services:
   mysql:
     image: mysql:8.0
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: example_password
       MYSQL_DATABASE: example_db
@@ -13,18 +14,21 @@ services:
     volumes:
       - ./mysql-init:/docker-entrypoint-initdb.d
     command: --default-authentication-plugin=mysql_native_password
-
+ 
   clickhouse:
     image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse
     ports:
       - "8123:8123"   # HTTP interface
       - "9000:9000"   # Native client port
-
+ 
   python_service:
     image: python:3.9-slim
+    container_name: interview-python
     command: sh -c "apt-get update && apt-get install -y openssh-server && pip install -r /app/requirements.txt && service ssh start && tail -f /dev/null"
     depends_on:
       - mysql
       - clickhouse
     volumes:
       - ./to_py_container:/app
+ 
