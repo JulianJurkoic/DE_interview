@@ -40,7 +40,7 @@ def create_clickhouse_table(client):
     CREATE TABLE IF NOT EXISTS {CLICKHOUSE_DATABASE}.{CLICKHOUSE_TABLE} (
         id Int32,
         first_name String,
-        last_name String,
+        last_name Int32,
         email String
     )
     ENGINE = MergeTree()
@@ -66,13 +66,14 @@ def main():
     print("Connecting to ClickHouse...")
     client = Client(host=CLICKHOUSE_HOST)
 
+    # Clear the existing data in the table
+    print("Clearing existing data in ClickHouse...")
+    client.execute(f"DROP TABLE IF EXISTS {CLICKHOUSE_DATABASE}.{CLICKHOUSE_TABLE}")
+    
     # Ensure the table exists
     print("Creating table in ClickHouse if it doesn't exist...")
     create_clickhouse_table(client)
 
-    # Clear the existing data in the table
-    print("Clearing existing data in ClickHouse...")
-    client.execute(f"TRUNCATE TABLE {CLICKHOUSE_DATABASE}.{CLICKHOUSE_TABLE}")
 
     # Insert new data into ClickHouse
     print("Inserting data into ClickHouse...")
