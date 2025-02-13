@@ -54,7 +54,11 @@ def insert_data_into_clickhouse(client, data):
     formatted_data = [
         (row['id'], row['first_name'], row['last_name'], row['email']) for row in data
     ]
-    client.execute(insert_query, formatted_data)
+    client.execute(
+        insert_query,
+        formatted_data,
+        columns=['id', 'first_name', 'last_name', 'email', 'created_at'],
+        )
 
 def main():
     """Main function to handle the ETL process."""
